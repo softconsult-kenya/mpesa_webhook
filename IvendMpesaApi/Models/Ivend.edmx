@@ -1,0 +1,1483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IVENDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModuleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Action" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuditTime" Type="datetime" />
+          <Property Name="RemoteIP" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AutoAuth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientHost" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="FullNames" Type="varchar" MaxLength="50" />
+          <Property Name="AuthArrivalTime" Type="datetime" />
+          <Property Name="IsConsumed" Type="bit" />
+          <Property Name="IsPolled" Type="bit" />
+          <Property Name="Msisdn" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Branches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="DbIP" Type="varchar" MaxLength="50" />
+          <Property Name="DbPort" Type="varchar" MaxLength="50" />
+          <Property Name="DbUser" Type="varchar" MaxLength="50" />
+          <Property Name="DbPassword" Type="varchar" MaxLength="100" />
+          <Property Name="ConfirmC2b_Url" Type="varchar" MaxLength="50" />
+          <Property Name="ShortCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContactAtrs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" />
+          <Property Name="GroupsAtrsId" Type="int" />
+          <Property Name="AtrValue" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="ContactGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="ContactGroupsAtrs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="GroupAtrKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupAtrDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'IVEND.dbo.Global' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Global">
+          <Property Name="Id" Type="int" />
+          <Property Name="AuditKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModuleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Action" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuditTime" Type="datetime" />
+          <Property Name="RemoteIP" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <EntityType Name="GlobalAtrs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AtrKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="AtrValue" Type="nvarchar" MaxLength="100" />
+          <Property Name="AtrDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="MessageTemplate" Type="nvarchar(max)" />
+          <Property Name="Level" Type="nvarchar" MaxLength="128" />
+          <Property Name="TimeStamp" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="Exception" Type="nvarchar(max)" />
+          <Property Name="Properties" Type="xml" />
+          <Property Name="LogEvent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillRefNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrgAccountBalance" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="nvarchar" MaxLength="100" />
+          <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MSG" Type="nvarchar" MaxLength="200" />
+          <Property Name="MessageArrivalTime" Type="datetime" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="TillId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.MPESA_C2B_ARCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MPESA_C2B_ARCH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillRefNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrgAccountBalance" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="nvarchar" MaxLength="100" />
+          <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MSG" Type="nvarchar" MaxLength="200" />
+          <Property Name="MessageArrivalTime" Type="datetime" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="TillId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.MPESA_C2B_ARCH_EXP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MPESA_C2B_ARCH_EXP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillRefNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrgAccountBalance" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="nvarchar" MaxLength="100" />
+          <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MSG" Type="nvarchar" MaxLength="200" />
+          <Property Name="MessageArrivalTime" Type="datetime" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="TillId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_IMPORT">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReceiptNo" Type="varchar(max)" />
+          <Property Name="CompletionTime" Type="datetime" />
+          <Property Name="InitiationTime" Type="datetime" />
+          <Property Name="Details" Type="varchar(max)" />
+          <Property Name="TransactionStatus" Type="varchar(max)" />
+          <Property Name="PaidIn" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WithDrawn" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BalanceConfirmed" Type="varchar(max)" />
+          <Property Name="ReasonType" Type="varchar(max)" />
+          <Property Name="OtherPartyInfo" Type="varchar(max)" />
+          <Property Name="Maker" Type="varchar(max)" />
+          <Property Name="Checker" Type="varchar(max)" />
+          <Property Name="UploadTime" Type="datetime" />
+          <Property Name="Verified" Type="bit" />
+          <Property Name="Reconciled" Type="bit" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_REVERSAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReversalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransDate" Type="datetime" />
+          <Property Name="ReversalAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MSG" Type="nvarchar" MaxLength="200" />
+          <Property Name="AccountBalance" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Status" Type="int" />
+          <Property Name="C2bMsg" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.MPESA_C2B_REVERSAL_EXP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MPESA_C2B_REVERSAL_EXP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TransID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReversalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransDate" Type="datetime" />
+          <Property Name="ReversalAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MSG" Type="nvarchar" MaxLength="200" />
+          <Property Name="AccountBalance" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Status" Type="int" />
+          <Property Name="C2bMsg" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Msgs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Recipient" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgBody" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="MsgTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Template" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemplateDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="REPORTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportName" Type="varchar" MaxLength="100" />
+          <Property Name="ReportDescription" Type="varchar" MaxLength="100" />
+          <Property Name="BranchId" Type="varchar" MaxLength="100" />
+          <Property Name="ReportType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Rights">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action" Type="nvarchar" MaxLength="100" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBankPayments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="amount" Type="varchar" MaxLength="50" />
+          <Property Name="authCode" Type="varchar" MaxLength="50" />
+          <Property Name="cardExpiry" Type="varchar" MaxLength="50" />
+          <Property Name="cashBack" Type="varchar" MaxLength="50" />
+          <Property Name="currency" Type="varchar" MaxLength="50" />
+          <Property Name="invoiceNo" Type="varchar" MaxLength="100" />
+          <Property Name="mid" Type="varchar" MaxLength="50" />
+          <Property Name="msg" Type="varchar" MaxLength="50" />
+          <Property Name="pan" Type="varchar" MaxLength="100" />
+          <Property Name="paymentDetails" Type="varchar" MaxLength="100" />
+          <Property Name="respCode" Type="varchar" MaxLength="50" />
+          <Property Name="rrn" Type="varchar" MaxLength="100" />
+          <Property Name="tid" Type="varchar" MaxLength="50" />
+          <Property Name="transactionType" Type="varchar" MaxLength="50" />
+          <Property Name="user" Type="varchar" MaxLength="50" />
+          <Property Name="tillNo" Type="varchar" MaxLength="50" />
+          <Property Name="used" Type="varchar" MaxLength="50" />
+          <Property Name="lock" Type="varchar" MaxLength="50" />
+          <Property Name="transDate" Type="datetime" />
+          <Property Name="Bank" Type="varchar" MaxLength="100" />
+          <Property Name="CardType" Type="varchar" MaxLength="50" />
+          <Property Name="Reconciled" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.tblBankPayments_EXP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblBankPayments_EXP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="amount" Type="varchar" MaxLength="50" />
+          <Property Name="authCode" Type="varchar" MaxLength="50" />
+          <Property Name="cardExpiry" Type="varchar" MaxLength="50" />
+          <Property Name="cashBack" Type="varchar" MaxLength="50" />
+          <Property Name="currency" Type="varchar" MaxLength="50" />
+          <Property Name="invoiceNo" Type="varchar" MaxLength="100" />
+          <Property Name="mid" Type="varchar" MaxLength="50" />
+          <Property Name="msg" Type="varchar" MaxLength="50" />
+          <Property Name="pan" Type="varchar" MaxLength="100" />
+          <Property Name="paymentDetails" Type="varchar" MaxLength="100" />
+          <Property Name="respCode" Type="varchar" MaxLength="50" />
+          <Property Name="rrn" Type="varchar" MaxLength="100" />
+          <Property Name="tid" Type="varchar" MaxLength="50" />
+          <Property Name="transactionType" Type="varchar" MaxLength="50" />
+          <Property Name="user" Type="varchar" MaxLength="50" />
+          <Property Name="tillNo" Type="varchar" MaxLength="50" />
+          <Property Name="used" Type="varchar" MaxLength="50" />
+          <Property Name="lock" Type="varchar" MaxLength="50" />
+          <Property Name="transDate" Type="datetime" />
+          <Property Name="Bank" Type="varchar" MaxLength="100" />
+          <Property Name="CardType" Type="varchar" MaxLength="50" />
+          <Property Name="Reconciled" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.tblEzzypay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblEzzypay">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TillNumber" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="100" />
+          <Property Name="Amount" Type="varchar" MaxLength="20" />
+          <Property Name="TimeStamp" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionRefNo" Type="varchar" MaxLength="20" />
+          <Property Name="ServedBy" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="20" />
+          <Property Name="Transdate" Type="datetime" />
+          <Property Name="Consumed" Type="bit" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.tblEzzypay_ARCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblEzzypay_ARCH">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TillNumber" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Amount" Type="varchar" MaxLength="20" />
+          <Property Name="TimeStamp" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionRefNo" Type="varchar" MaxLength="20" />
+          <Property Name="ServedBy" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="20" />
+          <Property Name="Transdate" Type="datetime" />
+          <Property Name="Consumed" Type="bit" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IVEND.dbo.tblEzzypay_ARCH_EXP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblEzzypay_ARCH_EXP">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TillNumber" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Amount" Type="varchar" MaxLength="20" />
+          <Property Name="TimeStamp" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionRefNo" Type="varchar" MaxLength="20" />
+          <Property Name="ServedBy" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="20" />
+          <Property Name="Transdate" Type="datetime" />
+          <Property Name="Consumed" Type="bit" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullNames" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="IVENDModelStoreContainer">
+          <EntitySet Name="Audit" EntityType="Self.Audit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoAuth" EntityType="Self.AutoAuth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactAtrs" EntityType="Self.ContactAtrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactGroups" EntityType="Self.ContactGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactGroupsAtrs" EntityType="Self.ContactGroupsAtrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalAtrs" EntityType="Self.GlobalAtrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPESA_C2B" EntityType="Self.MPESA_C2B" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPESA_C2B_IMPORT" EntityType="Self.MPESA_C2B_IMPORT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPESA_C2B_REVERSAL" EntityType="Self.MPESA_C2B_REVERSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Msgs" EntityType="Self.Msgs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MsgTemplates" EntityType="Self.MsgTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPORTS" EntityType="Self.REPORTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rights" EntityType="Self.Rights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBankPayments" EntityType="Self.tblBankPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPESA_C2B_ARCH" EntityType="Self.MPESA_C2B_ARCH" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MPESA_C2B_ARCH].[ID] AS [ID], 
+    [MPESA_C2B_ARCH].[TransactionType] AS [TransactionType], 
+    [MPESA_C2B_ARCH].[TransID] AS [TransID], 
+    [MPESA_C2B_ARCH].[TransTime] AS [TransTime], 
+    [MPESA_C2B_ARCH].[TransAmount] AS [TransAmount], 
+    [MPESA_C2B_ARCH].[BusinessShortCode] AS [BusinessShortCode], 
+    [MPESA_C2B_ARCH].[BillRefNumber] AS [BillRefNumber], 
+    [MPESA_C2B_ARCH].[InvoiceNumber] AS [InvoiceNumber], 
+    [MPESA_C2B_ARCH].[OrgAccountBalance] AS [OrgAccountBalance], 
+    [MPESA_C2B_ARCH].[ThirdPartyTransID] AS [ThirdPartyTransID], 
+    [MPESA_C2B_ARCH].[MSISDN] AS [MSISDN], 
+    [MPESA_C2B_ARCH].[FirstName] AS [FirstName], 
+    [MPESA_C2B_ARCH].[MiddleName] AS [MiddleName], 
+    [MPESA_C2B_ARCH].[LastName] AS [LastName], 
+    [MPESA_C2B_ARCH].[MSG] AS [MSG], 
+    [MPESA_C2B_ARCH].[MessageArrivalTime] AS [MessageArrivalTime], 
+    [MPESA_C2B_ARCH].[PostedDate] AS [PostedDate], 
+    [MPESA_C2B_ARCH].[PostedBy] AS [PostedBy], 
+    [MPESA_C2B_ARCH].[Status] AS [Status], 
+    [MPESA_C2B_ARCH].[TillId] AS [TillId]
+    FROM [dbo].[MPESA_C2B_ARCH] AS [MPESA_C2B_ARCH]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MPESA_C2B_ARCH_EXP" EntityType="Self.MPESA_C2B_ARCH_EXP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MPESA_C2B_ARCH_EXP].[ID] AS [ID], 
+    [MPESA_C2B_ARCH_EXP].[TransactionType] AS [TransactionType], 
+    [MPESA_C2B_ARCH_EXP].[TransID] AS [TransID], 
+    [MPESA_C2B_ARCH_EXP].[TransTime] AS [TransTime], 
+    [MPESA_C2B_ARCH_EXP].[TransAmount] AS [TransAmount], 
+    [MPESA_C2B_ARCH_EXP].[BusinessShortCode] AS [BusinessShortCode], 
+    [MPESA_C2B_ARCH_EXP].[BillRefNumber] AS [BillRefNumber], 
+    [MPESA_C2B_ARCH_EXP].[InvoiceNumber] AS [InvoiceNumber], 
+    [MPESA_C2B_ARCH_EXP].[OrgAccountBalance] AS [OrgAccountBalance], 
+    [MPESA_C2B_ARCH_EXP].[ThirdPartyTransID] AS [ThirdPartyTransID], 
+    [MPESA_C2B_ARCH_EXP].[MSISDN] AS [MSISDN], 
+    [MPESA_C2B_ARCH_EXP].[FirstName] AS [FirstName], 
+    [MPESA_C2B_ARCH_EXP].[MiddleName] AS [MiddleName], 
+    [MPESA_C2B_ARCH_EXP].[LastName] AS [LastName], 
+    [MPESA_C2B_ARCH_EXP].[MSG] AS [MSG], 
+    [MPESA_C2B_ARCH_EXP].[MessageArrivalTime] AS [MessageArrivalTime], 
+    [MPESA_C2B_ARCH_EXP].[PostedDate] AS [PostedDate], 
+    [MPESA_C2B_ARCH_EXP].[PostedBy] AS [PostedBy], 
+    [MPESA_C2B_ARCH_EXP].[Status] AS [Status], 
+    [MPESA_C2B_ARCH_EXP].[TillId] AS [TillId]
+    FROM [dbo].[MPESA_C2B_ARCH_EXP] AS [MPESA_C2B_ARCH_EXP]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MPESA_C2B_REVERSAL_EXP" EntityType="Self.MPESA_C2B_REVERSAL_EXP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MPESA_C2B_REVERSAL_EXP].[ID] AS [ID], 
+    [MPESA_C2B_REVERSAL_EXP].[TransID] AS [TransID], 
+    [MPESA_C2B_REVERSAL_EXP].[ReversalID] AS [ReversalID], 
+    [MPESA_C2B_REVERSAL_EXP].[TransDate] AS [TransDate], 
+    [MPESA_C2B_REVERSAL_EXP].[ReversalAmount] AS [ReversalAmount], 
+    [MPESA_C2B_REVERSAL_EXP].[MSG] AS [MSG], 
+    [MPESA_C2B_REVERSAL_EXP].[AccountBalance] AS [AccountBalance], 
+    [MPESA_C2B_REVERSAL_EXP].[Status] AS [Status], 
+    [MPESA_C2B_REVERSAL_EXP].[C2bMsg] AS [C2bMsg]
+    FROM [dbo].[MPESA_C2B_REVERSAL_EXP] AS [MPESA_C2B_REVERSAL_EXP]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblBankPayments_EXP" EntityType="Self.tblBankPayments_EXP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblBankPayments_EXP].[id] AS [id], 
+    [tblBankPayments_EXP].[amount] AS [amount], 
+    [tblBankPayments_EXP].[authCode] AS [authCode], 
+    [tblBankPayments_EXP].[cardExpiry] AS [cardExpiry], 
+    [tblBankPayments_EXP].[cashBack] AS [cashBack], 
+    [tblBankPayments_EXP].[currency] AS [currency], 
+    [tblBankPayments_EXP].[invoiceNo] AS [invoiceNo], 
+    [tblBankPayments_EXP].[mid] AS [mid], 
+    [tblBankPayments_EXP].[msg] AS [msg], 
+    [tblBankPayments_EXP].[pan] AS [pan], 
+    [tblBankPayments_EXP].[paymentDetails] AS [paymentDetails], 
+    [tblBankPayments_EXP].[respCode] AS [respCode], 
+    [tblBankPayments_EXP].[rrn] AS [rrn], 
+    [tblBankPayments_EXP].[tid] AS [tid], 
+    [tblBankPayments_EXP].[transactionType] AS [transactionType], 
+    [tblBankPayments_EXP].[user] AS [user], 
+    [tblBankPayments_EXP].[tillNo] AS [tillNo], 
+    [tblBankPayments_EXP].[used] AS [used], 
+    [tblBankPayments_EXP].[lock] AS [lock], 
+    [tblBankPayments_EXP].[transDate] AS [transDate], 
+    [tblBankPayments_EXP].[Bank] AS [Bank], 
+    [tblBankPayments_EXP].[CardType] AS [CardType], 
+    [tblBankPayments_EXP].[Reconciled] AS [Reconciled]
+    FROM [dbo].[tblBankPayments_EXP] AS [tblBankPayments_EXP]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblEzzypay" EntityType="Self.tblEzzypay" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblEzzypay].[Id] AS [Id], 
+    [tblEzzypay].[TillNumber] AS [TillNumber], 
+    [tblEzzypay].[MobileNumber] AS [MobileNumber], 
+    [tblEzzypay].[Amount] AS [Amount], 
+    [tblEzzypay].[TimeStamp] AS [TimeStamp], 
+    [tblEzzypay].[TransactionRefNo] AS [TransactionRefNo], 
+    [tblEzzypay].[ServedBy] AS [ServedBy], 
+    [tblEzzypay].[AdditionalInfo] AS [AdditionalInfo], 
+    [tblEzzypay].[Transdate] AS [Transdate], 
+    [tblEzzypay].[Consumed] AS [Consumed], 
+    [tblEzzypay].[CustomerName] AS [CustomerName], 
+    [tblEzzypay].[Status] AS [Status]
+    FROM [dbo].[tblEzzypay] AS [tblEzzypay]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblEzzypay_ARCH" EntityType="Self.tblEzzypay_ARCH" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblEzzypay_ARCH].[Id] AS [Id], 
+    [tblEzzypay_ARCH].[TillNumber] AS [TillNumber], 
+    [tblEzzypay_ARCH].[MobileNumber] AS [MobileNumber], 
+    [tblEzzypay_ARCH].[Amount] AS [Amount], 
+    [tblEzzypay_ARCH].[TimeStamp] AS [TimeStamp], 
+    [tblEzzypay_ARCH].[TransactionRefNo] AS [TransactionRefNo], 
+    [tblEzzypay_ARCH].[ServedBy] AS [ServedBy], 
+    [tblEzzypay_ARCH].[AdditionalInfo] AS [AdditionalInfo], 
+    [tblEzzypay_ARCH].[Transdate] AS [Transdate], 
+    [tblEzzypay_ARCH].[Consumed] AS [Consumed], 
+    [tblEzzypay_ARCH].[CustomerName] AS [CustomerName], 
+    [tblEzzypay_ARCH].[Status] AS [Status]
+    FROM [dbo].[tblEzzypay_ARCH] AS [tblEzzypay_ARCH]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblEzzypay_ARCH_EXP" EntityType="Self.tblEzzypay_ARCH_EXP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblEzzypay_ARCH_EXP].[Id] AS [Id], 
+    [tblEzzypay_ARCH_EXP].[TillNumber] AS [TillNumber], 
+    [tblEzzypay_ARCH_EXP].[MobileNumber] AS [MobileNumber], 
+    [tblEzzypay_ARCH_EXP].[Amount] AS [Amount], 
+    [tblEzzypay_ARCH_EXP].[TimeStamp] AS [TimeStamp], 
+    [tblEzzypay_ARCH_EXP].[TransactionRefNo] AS [TransactionRefNo], 
+    [tblEzzypay_ARCH_EXP].[ServedBy] AS [ServedBy], 
+    [tblEzzypay_ARCH_EXP].[AdditionalInfo] AS [AdditionalInfo], 
+    [tblEzzypay_ARCH_EXP].[Transdate] AS [Transdate], 
+    [tblEzzypay_ARCH_EXP].[Consumed] AS [Consumed], 
+    [tblEzzypay_ARCH_EXP].[CustomerName] AS [CustomerName], 
+    [tblEzzypay_ARCH_EXP].[Status] AS [Status]
+    FROM [dbo].[tblEzzypay_ARCH_EXP] AS [tblEzzypay_ARCH_EXP]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IVENDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AuditTime" Type="DateTime" Precision="3" />
+          <Property Name="RemoteIP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AutoAuth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FullNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuthArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="IsConsumed" Type="Boolean" />
+          <Property Name="IsPolled" Type="Boolean" />
+          <Property Name="Msisdn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DbIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DbPort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DbUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DbPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmC2b_Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ContactAtr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" />
+          <Property Name="GroupsAtrsId" Type="Int32" />
+          <Property Name="AtrValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ContactGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ContactGroupsAtr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="GroupAtrKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GroupAtrDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GlobalAtr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AtrKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AtrValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AtrDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogEvent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_IMPORT">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiptNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CompletionTime" Type="DateTime" Precision="3" />
+          <Property Name="InitiationTime" Type="DateTime" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PaidIn" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WithDrawn" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BalanceConfirmed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OtherPartyInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Maker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Checker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UploadTime" Type="DateTime" Precision="3" />
+          <Property Name="Verified" Type="Boolean" />
+          <Property Name="Reconciled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_REVERSAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReversalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransDate" Type="DateTime" Precision="3" />
+          <Property Name="ReversalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AccountBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="C2bMsg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Msg">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgBody" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MsgTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="REPORT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReportDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReportType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBankPayment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardExpiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cashBack" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="invoiceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymentDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="respCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rrn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="used" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transDate" Type="DateTime" Precision="3" />
+          <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reconciled" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullNames" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_ARCH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_ARCH_EXP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MPESA_C2B_REVERSAL_EXP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReversalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransDate" Type="DateTime" Precision="3" />
+          <Property Name="ReversalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AccountBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="C2bMsg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblBankPayments_EXP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardExpiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cashBack" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="invoiceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymentDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="respCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rrn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="used" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transDate" Type="DateTime" Precision="3" />
+          <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reconciled" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblEzzypay">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Transdate" Type="DateTime" Precision="3" />
+          <Property Name="Consumed" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblEzzypay_ARCH">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Transdate" Type="DateTime" Precision="3" />
+          <Property Name="Consumed" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblEzzypay_ARCH_EXP">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consumed" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Transdate" Type="DateTime" Precision="3" />
+          <Property Name="Consumed" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="IVENDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Audits" EntityType="Self.Audit" />
+          <EntitySet Name="AutoAuths" EntityType="Self.AutoAuth" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="ContactAtrs" EntityType="Self.ContactAtr" />
+          <EntitySet Name="ContactGroups" EntityType="Self.ContactGroup" />
+          <EntitySet Name="ContactGroupsAtrs" EntityType="Self.ContactGroupsAtr" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="GlobalAtrs" EntityType="Self.GlobalAtr" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="MPESA_C2B" EntityType="Self.MPESA_C2B" />
+          <EntitySet Name="MPESA_C2B_IMPORT" EntityType="Self.MPESA_C2B_IMPORT" />
+          <EntitySet Name="MPESA_C2B_REVERSAL" EntityType="Self.MPESA_C2B_REVERSAL" />
+          <EntitySet Name="Msgs" EntityType="Self.Msg" />
+          <EntitySet Name="MsgTemplates" EntityType="Self.MsgTemplate" />
+          <EntitySet Name="REPORTS" EntityType="Self.REPORT" />
+          <EntitySet Name="Rights" EntityType="Self.Right" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="tblBankPayments" EntityType="Self.tblBankPayment" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="MPESA_C2B_ARCH" EntityType="Self.MPESA_C2B_ARCH" />
+          <EntitySet Name="MPESA_C2B_ARCH_EXP" EntityType="Self.MPESA_C2B_ARCH_EXP" />
+          <EntitySet Name="MPESA_C2B_REVERSAL_EXP" EntityType="Self.MPESA_C2B_REVERSAL_EXP" />
+          <EntitySet Name="tblBankPayments_EXP" EntityType="Self.tblBankPayments_EXP" />
+          <EntitySet Name="tblEzzypays" EntityType="Self.tblEzzypay" />
+          <EntitySet Name="tblEzzypay_ARCH" EntityType="Self.tblEzzypay_ARCH" />
+          <EntitySet Name="tblEzzypay_ARCH_EXP" EntityType="Self.tblEzzypay_ARCH_EXP" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IVENDModelStoreContainer" CdmEntityContainer="IVENDEntities">
+          <EntitySetMapping Name="Audits">
+            <EntityTypeMapping TypeName="IVENDModel.Audit">
+              <MappingFragment StoreEntitySet="Audit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuditKey" ColumnName="AuditKey" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+                <ScalarProperty Name="RemoteIP" ColumnName="RemoteIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoAuths">
+            <EntityTypeMapping TypeName="IVENDModel.AutoAuth">
+              <MappingFragment StoreEntitySet="AutoAuth">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientHost" ColumnName="ClientHost" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FullNames" ColumnName="FullNames" />
+                <ScalarProperty Name="AuthArrivalTime" ColumnName="AuthArrivalTime" />
+                <ScalarProperty Name="IsConsumed" ColumnName="IsConsumed" />
+                <ScalarProperty Name="IsPolled" ColumnName="IsPolled" />
+                <ScalarProperty Name="Msisdn" ColumnName="Msisdn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="IVENDModel.Branch">
+              <MappingFragment StoreEntitySet="Branches">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DbIP" ColumnName="DbIP" />
+                <ScalarProperty Name="DbPort" ColumnName="DbPort" />
+                <ScalarProperty Name="DbUser" ColumnName="DbUser" />
+                <ScalarProperty Name="DbPassword" ColumnName="DbPassword" />
+                <ScalarProperty Name="ConfirmC2b_Url" ColumnName="ConfirmC2b_Url" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactAtrs">
+            <EntityTypeMapping TypeName="IVENDModel.ContactAtr">
+              <MappingFragment StoreEntitySet="ContactAtrs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="GroupsAtrsId" ColumnName="GroupsAtrsId" />
+                <ScalarProperty Name="AtrValue" ColumnName="AtrValue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactGroups">
+            <EntityTypeMapping TypeName="IVENDModel.ContactGroup">
+              <MappingFragment StoreEntitySet="ContactGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactGroupsAtrs">
+            <EntityTypeMapping TypeName="IVENDModel.ContactGroupsAtr">
+              <MappingFragment StoreEntitySet="ContactGroupsAtrs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupAtrKey" ColumnName="GroupAtrKey" />
+                <ScalarProperty Name="GroupAtrDesc" ColumnName="GroupAtrDesc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="IVENDModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalAtrs">
+            <EntityTypeMapping TypeName="IVENDModel.GlobalAtr">
+              <MappingFragment StoreEntitySet="GlobalAtrs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AtrKey" ColumnName="AtrKey" />
+                <ScalarProperty Name="AtrValue" ColumnName="AtrValue" />
+                <ScalarProperty Name="AtrDesc" ColumnName="AtrDesc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="IVENDModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageTemplate" ColumnName="MessageTemplate" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Properties" ColumnName="Properties" />
+                <ScalarProperty Name="LogEvent" ColumnName="LogEvent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B">
+              <MappingFragment StoreEntitySet="MPESA_C2B">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+                <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+                <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+                <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+                <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TillId" ColumnName="TillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B_IMPORT">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_IMPORT">
+              <MappingFragment StoreEntitySet="MPESA_C2B_IMPORT">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+                <ScalarProperty Name="InitiationTime" ColumnName="InitiationTime" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+                <ScalarProperty Name="PaidIn" ColumnName="PaidIn" />
+                <ScalarProperty Name="WithDrawn" ColumnName="WithDrawn" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="BalanceConfirmed" ColumnName="BalanceConfirmed" />
+                <ScalarProperty Name="ReasonType" ColumnName="ReasonType" />
+                <ScalarProperty Name="OtherPartyInfo" ColumnName="OtherPartyInfo" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="Checker" ColumnName="Checker" />
+                <ScalarProperty Name="UploadTime" ColumnName="UploadTime" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B_REVERSAL">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_REVERSAL">
+              <MappingFragment StoreEntitySet="MPESA_C2B_REVERSAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="ReversalID" ColumnName="ReversalID" />
+                <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+                <ScalarProperty Name="ReversalAmount" ColumnName="ReversalAmount" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="C2bMsg" ColumnName="C2bMsg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Msgs">
+            <EntityTypeMapping TypeName="IVENDModel.Msg">
+              <MappingFragment StoreEntitySet="Msgs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="MsgBody" ColumnName="MsgBody" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MsgTemplates">
+            <EntityTypeMapping TypeName="IVENDModel.MsgTemplate">
+              <MappingFragment StoreEntitySet="MsgTemplates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateDesc" ColumnName="TemplateDesc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPORTS">
+            <EntityTypeMapping TypeName="IVENDModel.REPORT">
+              <MappingFragment StoreEntitySet="REPORTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="ReportDescription" ColumnName="ReportDescription" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rights">
+            <EntityTypeMapping TypeName="IVENDModel.Right">
+              <MappingFragment StoreEntitySet="Rights">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="IVENDModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBankPayments">
+            <EntityTypeMapping TypeName="IVENDModel.tblBankPayment">
+              <MappingFragment StoreEntitySet="tblBankPayments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="authCode" ColumnName="authCode" />
+                <ScalarProperty Name="cardExpiry" ColumnName="cardExpiry" />
+                <ScalarProperty Name="cashBack" ColumnName="cashBack" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="pan" ColumnName="pan" />
+                <ScalarProperty Name="paymentDetails" ColumnName="paymentDetails" />
+                <ScalarProperty Name="respCode" ColumnName="respCode" />
+                <ScalarProperty Name="rrn" ColumnName="rrn" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="tillNo" ColumnName="tillNo" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="transDate" ColumnName="transDate" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IVENDModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="FullNames" ColumnName="FullNames" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B_ARCH">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_ARCH">
+              <MappingFragment StoreEntitySet="MPESA_C2B_ARCH">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+                <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+                <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+                <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+                <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TillId" ColumnName="TillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B_ARCH_EXP">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_ARCH_EXP">
+              <MappingFragment StoreEntitySet="MPESA_C2B_ARCH_EXP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+                <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+                <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+                <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+                <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TillId" ColumnName="TillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPESA_C2B_REVERSAL_EXP">
+            <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_REVERSAL_EXP">
+              <MappingFragment StoreEntitySet="MPESA_C2B_REVERSAL_EXP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="ReversalID" ColumnName="ReversalID" />
+                <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+                <ScalarProperty Name="ReversalAmount" ColumnName="ReversalAmount" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="C2bMsg" ColumnName="C2bMsg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBankPayments_EXP">
+            <EntityTypeMapping TypeName="IVENDModel.tblBankPayments_EXP">
+              <MappingFragment StoreEntitySet="tblBankPayments_EXP">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="authCode" ColumnName="authCode" />
+                <ScalarProperty Name="cardExpiry" ColumnName="cardExpiry" />
+                <ScalarProperty Name="cashBack" ColumnName="cashBack" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="pan" ColumnName="pan" />
+                <ScalarProperty Name="paymentDetails" ColumnName="paymentDetails" />
+                <ScalarProperty Name="respCode" ColumnName="respCode" />
+                <ScalarProperty Name="rrn" ColumnName="rrn" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="tillNo" ColumnName="tillNo" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="transDate" ColumnName="transDate" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEzzypays">
+            <EntityTypeMapping TypeName="IVENDModel.tblEzzypay">
+              <MappingFragment StoreEntitySet="tblEzzypay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+                <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+                <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEzzypay_ARCH">
+            <EntityTypeMapping TypeName="IVENDModel.tblEzzypay_ARCH">
+              <MappingFragment StoreEntitySet="tblEzzypay_ARCH">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+                <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+                <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEzzypay_ARCH_EXP">
+            <EntityTypeMapping TypeName="IVENDModel.tblEzzypay_ARCH_EXP">
+              <MappingFragment StoreEntitySet="tblEzzypay_ARCH_EXP">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+                <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+                <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

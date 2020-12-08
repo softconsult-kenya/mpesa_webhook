@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IVENDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Audit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuditKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModuleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AuditTime" Type="DateTime" Precision="3" />
+    <Property Name="RemoteIP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AutoAuth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FullNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AuthArrivalTime" Type="DateTime" Precision="3" />
+    <Property Name="IsConsumed" Type="Boolean" />
+    <Property Name="IsPolled" Type="Boolean" />
+    <Property Name="Msisdn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DbIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DbPort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DbUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DbPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ConfirmC2b_Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ContactAtr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactId" Type="Int32" />
+    <Property Name="GroupsAtrsId" Type="Int32" />
+    <Property Name="AtrValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ContactGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ContactGroupsAtr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="GroupAtrKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GroupAtrDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="GlobalAtr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AtrKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AtrValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AtrDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MessageTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TimeStamp" Type="DateTimeOffset" Nullable="false" Precision="7" />
+    <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogEvent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+    <Property Name="PostedDate" Type="DateTime" Precision="3" />
+    <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B_IMPORT">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiptNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CompletionTime" Type="DateTime" Precision="3" />
+    <Property Name="InitiationTime" Type="DateTime" Precision="3" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaidIn" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="WithDrawn" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BalanceConfirmed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReasonType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OtherPartyInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Maker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Checker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UploadTime" Type="DateTime" Precision="3" />
+    <Property Name="Verified" Type="Boolean" />
+    <Property Name="Reconciled" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B_REVERSAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReversalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransDate" Type="DateTime" Precision="3" />
+    <Property Name="ReversalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AccountBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="C2bMsg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Msg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MsgBody" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MsgTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TemplateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TemplateDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="REPORT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReportDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BranchId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReportType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Right">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBankPayment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="authCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cardExpiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cashBack" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="invoiceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="paymentDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="respCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rrn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="used" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="transDate" Type="DateTime" Precision="3" />
+    <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reconciled" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullNames" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B_ARCH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+    <Property Name="PostedDate" Type="DateTime" Precision="3" />
+    <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B_ARCH_EXP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BusinessShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BillRefNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrgAccountBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ThirdPartyTransID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MessageArrivalTime" Type="DateTime" Precision="3" />
+    <Property Name="PostedDate" Type="DateTime" Precision="3" />
+    <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TillId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MPESA_C2B_REVERSAL_EXP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TransID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReversalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransDate" Type="DateTime" Precision="3" />
+    <Property Name="ReversalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MSG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AccountBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="C2bMsg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblBankPayments_EXP">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="authCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cardExpiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cashBack" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="invoiceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="paymentDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="respCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rrn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="used" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="transDate" Type="DateTime" Precision="3" />
+    <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reconciled" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblEzzypay">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Consumed" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Transdate" Type="DateTime" Precision="3" />
+    <Property Name="Consumed" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblEzzypay_ARCH">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Consumed" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Transdate" Type="DateTime" Precision="3" />
+    <Property Name="Consumed" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblEzzypay_ARCH_EXP">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Consumed" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TillNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionRefNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ServedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Transdate" Type="DateTime" Precision="3" />
+    <Property Name="Consumed" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="IVENDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Audits" EntityType="Self.Audit" />
+    <EntitySet Name="AutoAuths" EntityType="Self.AutoAuth" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="ContactAtrs" EntityType="Self.ContactAtr" />
+    <EntitySet Name="ContactGroups" EntityType="Self.ContactGroup" />
+    <EntitySet Name="ContactGroupsAtrs" EntityType="Self.ContactGroupsAtr" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="GlobalAtrs" EntityType="Self.GlobalAtr" />
+    <EntitySet Name="Logs" EntityType="Self.Log" />
+    <EntitySet Name="MPESA_C2B" EntityType="Self.MPESA_C2B" />
+    <EntitySet Name="MPESA_C2B_IMPORT" EntityType="Self.MPESA_C2B_IMPORT" />
+    <EntitySet Name="MPESA_C2B_REVERSAL" EntityType="Self.MPESA_C2B_REVERSAL" />
+    <EntitySet Name="Msgs" EntityType="Self.Msg" />
+    <EntitySet Name="MsgTemplates" EntityType="Self.MsgTemplate" />
+    <EntitySet Name="REPORTS" EntityType="Self.REPORT" />
+    <EntitySet Name="Rights" EntityType="Self.Right" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="tblBankPayments" EntityType="Self.tblBankPayment" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="MPESA_C2B_ARCH" EntityType="Self.MPESA_C2B_ARCH" />
+    <EntitySet Name="MPESA_C2B_ARCH_EXP" EntityType="Self.MPESA_C2B_ARCH_EXP" />
+    <EntitySet Name="MPESA_C2B_REVERSAL_EXP" EntityType="Self.MPESA_C2B_REVERSAL_EXP" />
+    <EntitySet Name="tblBankPayments_EXP" EntityType="Self.tblBankPayments_EXP" />
+    <EntitySet Name="tblEzzypays" EntityType="Self.tblEzzypay" />
+    <EntitySet Name="tblEzzypay_ARCH" EntityType="Self.tblEzzypay_ARCH" />
+    <EntitySet Name="tblEzzypay_ARCH_EXP" EntityType="Self.tblEzzypay_ARCH_EXP" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IVENDModelStoreContainer" CdmEntityContainer="IVENDEntities">
+    <EntitySetMapping Name="Audits">
+      <EntityTypeMapping TypeName="IVENDModel.Audit">
+        <MappingFragment StoreEntitySet="Audit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AuditKey" ColumnName="AuditKey" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+          <ScalarProperty Name="RemoteIP" ColumnName="RemoteIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutoAuths">
+      <EntityTypeMapping TypeName="IVENDModel.AutoAuth">
+        <MappingFragment StoreEntitySet="AutoAuth">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientHost" ColumnName="ClientHost" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="FullNames" ColumnName="FullNames" />
+          <ScalarProperty Name="AuthArrivalTime" ColumnName="AuthArrivalTime" />
+          <ScalarProperty Name="IsConsumed" ColumnName="IsConsumed" />
+          <ScalarProperty Name="IsPolled" ColumnName="IsPolled" />
+          <ScalarProperty Name="Msisdn" ColumnName="Msisdn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="IVENDModel.Branch">
+        <MappingFragment StoreEntitySet="Branches">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DbIP" ColumnName="DbIP" />
+          <ScalarProperty Name="DbPort" ColumnName="DbPort" />
+          <ScalarProperty Name="DbUser" ColumnName="DbUser" />
+          <ScalarProperty Name="DbPassword" ColumnName="DbPassword" />
+          <ScalarProperty Name="ConfirmC2b_Url" ColumnName="ConfirmC2b_Url" />
+          <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactAtrs">
+      <EntityTypeMapping TypeName="IVENDModel.ContactAtr">
+        <MappingFragment StoreEntitySet="ContactAtrs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="GroupsAtrsId" ColumnName="GroupsAtrsId" />
+          <ScalarProperty Name="AtrValue" ColumnName="AtrValue" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactGroups">
+      <EntityTypeMapping TypeName="IVENDModel.ContactGroup">
+        <MappingFragment StoreEntitySet="ContactGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactGroupsAtrs">
+      <EntityTypeMapping TypeName="IVENDModel.ContactGroupsAtr">
+        <MappingFragment StoreEntitySet="ContactGroupsAtrs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupAtrKey" ColumnName="GroupAtrKey" />
+          <ScalarProperty Name="GroupAtrDesc" ColumnName="GroupAtrDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="IVENDModel.Contact">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlobalAtrs">
+      <EntityTypeMapping TypeName="IVENDModel.GlobalAtr">
+        <MappingFragment StoreEntitySet="GlobalAtrs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AtrKey" ColumnName="AtrKey" />
+          <ScalarProperty Name="AtrValue" ColumnName="AtrValue" />
+          <ScalarProperty Name="AtrDesc" ColumnName="AtrDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="IVENDModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageTemplate" ColumnName="MessageTemplate" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+          <ScalarProperty Name="Properties" ColumnName="Properties" />
+          <ScalarProperty Name="LogEvent" ColumnName="LogEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B">
+        <MappingFragment StoreEntitySet="MPESA_C2B">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+          <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+          <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+          <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+          <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+          <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+          <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TillId" ColumnName="TillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B_IMPORT">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_IMPORT">
+        <MappingFragment StoreEntitySet="MPESA_C2B_IMPORT">
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+          <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+          <ScalarProperty Name="InitiationTime" ColumnName="InitiationTime" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="PaidIn" ColumnName="PaidIn" />
+          <ScalarProperty Name="WithDrawn" ColumnName="WithDrawn" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="BalanceConfirmed" ColumnName="BalanceConfirmed" />
+          <ScalarProperty Name="ReasonType" ColumnName="ReasonType" />
+          <ScalarProperty Name="OtherPartyInfo" ColumnName="OtherPartyInfo" />
+          <ScalarProperty Name="Maker" ColumnName="Maker" />
+          <ScalarProperty Name="Checker" ColumnName="Checker" />
+          <ScalarProperty Name="UploadTime" ColumnName="UploadTime" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B_REVERSAL">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_REVERSAL">
+        <MappingFragment StoreEntitySet="MPESA_C2B_REVERSAL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="ReversalID" ColumnName="ReversalID" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="ReversalAmount" ColumnName="ReversalAmount" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="C2bMsg" ColumnName="C2bMsg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Msgs">
+      <EntityTypeMapping TypeName="IVENDModel.Msg">
+        <MappingFragment StoreEntitySet="Msgs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+          <ScalarProperty Name="MsgBody" ColumnName="MsgBody" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsgTemplates">
+      <EntityTypeMapping TypeName="IVENDModel.MsgTemplate">
+        <MappingFragment StoreEntitySet="MsgTemplates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplateDesc" ColumnName="TemplateDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REPORTS">
+      <EntityTypeMapping TypeName="IVENDModel.REPORT">
+        <MappingFragment StoreEntitySet="REPORTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="ReportDescription" ColumnName="ReportDescription" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rights">
+      <EntityTypeMapping TypeName="IVENDModel.Right">
+        <MappingFragment StoreEntitySet="Rights">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IVENDModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBankPayments">
+      <EntityTypeMapping TypeName="IVENDModel.tblBankPayment">
+        <MappingFragment StoreEntitySet="tblBankPayments">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="authCode" ColumnName="authCode" />
+          <ScalarProperty Name="cardExpiry" ColumnName="cardExpiry" />
+          <ScalarProperty Name="cashBack" ColumnName="cashBack" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="msg" ColumnName="msg" />
+          <ScalarProperty Name="pan" ColumnName="pan" />
+          <ScalarProperty Name="paymentDetails" ColumnName="paymentDetails" />
+          <ScalarProperty Name="respCode" ColumnName="respCode" />
+          <ScalarProperty Name="rrn" ColumnName="rrn" />
+          <ScalarProperty Name="tid" ColumnName="tid" />
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="tillNo" ColumnName="tillNo" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="lock" ColumnName="lock" />
+          <ScalarProperty Name="transDate" ColumnName="transDate" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IVENDModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="FullNames" ColumnName="FullNames" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B_ARCH">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_ARCH">
+        <MappingFragment StoreEntitySet="MPESA_C2B_ARCH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+          <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+          <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+          <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+          <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+          <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+          <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TillId" ColumnName="TillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B_ARCH_EXP">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_ARCH_EXP">
+        <MappingFragment StoreEntitySet="MPESA_C2B_ARCH_EXP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+          <ScalarProperty Name="TransAmount" ColumnName="TransAmount" />
+          <ScalarProperty Name="BusinessShortCode" ColumnName="BusinessShortCode" />
+          <ScalarProperty Name="BillRefNumber" ColumnName="BillRefNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="OrgAccountBalance" ColumnName="OrgAccountBalance" />
+          <ScalarProperty Name="ThirdPartyTransID" ColumnName="ThirdPartyTransID" />
+          <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="MessageArrivalTime" ColumnName="MessageArrivalTime" />
+          <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TillId" ColumnName="TillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MPESA_C2B_REVERSAL_EXP">
+      <EntityTypeMapping TypeName="IVENDModel.MPESA_C2B_REVERSAL_EXP">
+        <MappingFragment StoreEntitySet="MPESA_C2B_REVERSAL_EXP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="ReversalID" ColumnName="ReversalID" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="ReversalAmount" ColumnName="ReversalAmount" />
+          <ScalarProperty Name="MSG" ColumnName="MSG" />
+          <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="C2bMsg" ColumnName="C2bMsg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBankPayments_EXP">
+      <EntityTypeMapping TypeName="IVENDModel.tblBankPayments_EXP">
+        <MappingFragment StoreEntitySet="tblBankPayments_EXP">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="authCode" ColumnName="authCode" />
+          <ScalarProperty Name="cardExpiry" ColumnName="cardExpiry" />
+          <ScalarProperty Name="cashBack" ColumnName="cashBack" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="msg" ColumnName="msg" />
+          <ScalarProperty Name="pan" ColumnName="pan" />
+          <ScalarProperty Name="paymentDetails" ColumnName="paymentDetails" />
+          <ScalarProperty Name="respCode" ColumnName="respCode" />
+          <ScalarProperty Name="rrn" ColumnName="rrn" />
+          <ScalarProperty Name="tid" ColumnName="tid" />
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="tillNo" ColumnName="tillNo" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="lock" ColumnName="lock" />
+          <ScalarProperty Name="transDate" ColumnName="transDate" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEzzypays">
+      <EntityTypeMapping TypeName="IVENDModel.tblEzzypay">
+        <MappingFragment StoreEntitySet="tblEzzypay">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+          <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+          <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEzzypay_ARCH">
+      <EntityTypeMapping TypeName="IVENDModel.tblEzzypay_ARCH">
+        <MappingFragment StoreEntitySet="tblEzzypay_ARCH">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+          <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+          <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEzzypay_ARCH_EXP">
+      <EntityTypeMapping TypeName="IVENDModel.tblEzzypay_ARCH_EXP">
+        <MappingFragment StoreEntitySet="tblEzzypay_ARCH_EXP">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TillNumber" ColumnName="TillNumber" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="TransactionRefNo" ColumnName="TransactionRefNo" />
+          <ScalarProperty Name="ServedBy" ColumnName="ServedBy" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="Transdate" ColumnName="Transdate" />
+          <ScalarProperty Name="Consumed" ColumnName="Consumed" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
